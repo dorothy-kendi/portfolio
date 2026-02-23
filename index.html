@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dorothy Kendi | Web Designer</title>
+  <style>
+    :root{
+      --bg:#070a14;
+      --text:#f2f6ff;
+      --muted:rgba(242,246,255,.72);
+      --border:rgba(255,255,255,.14);
+      --card:rgba(255,255,255,.06);
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --r:18px;
+      --max:1120px;
+
+      --a:#7c5cff;
+      --b:#22d3ee;
+      --c:#34d399;
+      --gold:#fbbf24;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 520px at 12% 10%, rgba(124,92,255,.35), transparent 60%),
+        radial-gradient(900px 520px at 90% 2%, rgba(34,211,238,.22), transparent 60%),
+        radial-gradient(900px 520px at 55% 95%, rgba(52,211,153,.16), transparent 60%),
+        var(--bg);
+      min-height:100vh;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .container{width:min(var(--max), calc(100% - 40px)); margin:0 auto}
+
+    .card{
+      background: var(--card);
+      border:1px solid var(--border);
+      border-radius: var(--r);
+      box-shadow: var(--shadow);
+    }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(14px);
+      background: rgba(7,10,20,.70);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar .row{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:950; letter-spacing:.2px;
+    }
+    .mark{
+      width:38px; height:38px; border-radius:14px;
+      background: linear-gradient(135deg, var(--a), var(--b), var(--c));
+      box-shadow: var(--shadow);
+    }
+    .nav{
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end;
+    }
+    .nav a{
+      padding:10px 12px;
+      border-radius:12px;
+      color: var(--muted);
+      border:1px solid transparent;
+      font-weight:900;
+      font-size:14px;
+      transition:.2s ease;
+      background: transparent;
+    }
+    .nav a:hover{
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.06);
+      transform: translateY(-1px);
+    }
+
+    /* Hero */
+    header.hero{padding:54px 0 18px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    .hero-main{padding:26px; position:relative; overflow:hidden}
+    .hero-main:before{
+      content:"";
+      position:absolute;
+      inset:-120px -140px auto auto;
+      width:340px; height:340px;
+      background: radial-gradient(circle at 30% 30%, rgba(124,92,255,.55), transparent 62%);
+      transform: rotate(15deg);
+      pointer-events:none;
+      opacity:.85;
+    }
+    .status{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      color: var(--muted);
+      font-weight:950;
+      font-size:13px;
+    }
+    .pulse{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--c);
+      box-shadow: 0 0 0 6px rgba(52,211,153,.12);
+    }
+
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(30px, 4vw, 50px);
+      line-height:1.05;
+      letter-spacing: -0.9px;
+    }
+    .lead{
+      margin:0;
+      color: var(--muted);
+      line-height:1.75;
+      font-size:16px;
+      max-width: 64ch;
+    }
+
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      gap:10px;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      font-weight:950;
+      font-size:14px;
+      transition:.2s ease;
+    }
+    .btn:hover{background: rgba(255,255,255,.10); transform: translateY(-1px)}
+    .btn.primary{
+      border-color: transparent;
+      color:#06101c;
+      background: linear-gradient(135deg, var(--a), var(--b), var(--c));
+      box-shadow: 0 18px 40px rgba(124,92,255,.22);
+    }
+    .btn.primary:hover{filter:brightness(1.05)}
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.18);
+    }
+    .btn.ghost:hover{background: rgba(255,255,255,.06)}
+    .btn.whatsapp{
+      border-color: rgba(52,211,153,.35);
+      background: rgba(52,211,153,.12);
+    }
+    .btn.whatsapp:hover{background: rgba(52,211,153,.18)}
+
+    /* Side */
+    .hero-side{padding:16px; display:flex; flex-direction:column; gap:12px}
+    .mini{
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      border-radius: 16px;
+      padding:14px;
+    }
+    .mini .k{color:var(--muted); font-size:13px; font-weight:950; letter-spacing:.2px; margin:0 0 8px}
+    .mini p{margin:0; line-height:1.6; color:rgba(242,246,255,.86); font-size:14px}
+    .pill-row{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
+    .pill{
+      font-size:12px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      color: var(--muted);
+      font-weight:950;
+    }
+
+    /* Sections */
+    section{padding:24px 0}
+    .head{
+      display:flex; align-items:flex-end; justify-content:space-between;
+      gap:12px; margin-bottom:12px;
+    }
+    .head h2{margin:0; font-size:20px; letter-spacing:-.2px}
+    .head .sub{margin:0; color:var(--muted); font-size:14px; line-height:1.5}
+
+    /* Work */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .project{
+      padding:16px;
+      transition:.2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .project:hover{
+      transform: translateY(-2px);
+      background: rgba(255,255,255,.08);
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.06);
+      color: var(--muted);
+      font-size:12px;
+      font-weight:950;
+    }
+
+    /* “Real” screenshot mock */
+    .shot{
+      border-radius: 16px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      overflow:hidden;
+      margin: 12px 0 12px;
+    }
+    .shot .bar{
+      height: 34px;
+      display:flex;
+      align-items:center;
+      gap:8px;
+      padding: 0 12px;
+      border-bottom:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.22);
+    }
+    .dots{display:flex; gap:7px}
+    .dot{width:10px; height:10px; border-radius:999px; background: rgba(255,255,255,.18)}
+    .addr{
+      margin-left:auto;
+      width: 52%;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+    }
+    .shot .view{
+      height: 170px;
+      position:relative;
+      background:
+        radial-gradient(120px 90px at 20% 25%, rgba(255,255,255,.12), transparent 62%),
+        radial-gradient(140px 100px at 70% 70%, rgba(255,255,255,.10), transparent 62%),
+        linear-gradient(135deg, rgba(124,92,255,.26), rgba(34,211,238,.18), rgba(52,211,153,.14)),
+        rgba(255,255,255,.06);
+    }
+    .shot .view:after{
+      content:"";
+      position:absolute; inset: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,0)),
+        rgba(255,255,255,.03);
+    }
+    .shot .label{
+      position:absolute;
+      left: 22px;
+      bottom: 22px;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.16);
+      background: rgba(0,0,0,.25);
+      color: rgba(242,246,255,.92);
+      font-weight: 950;
+      font-size: 13px;
+      backdrop-filter: blur(10px);
+    }
+    .chip{
+      width:10px; height:10px; border-radius:999px;
+      background: var(--b);
+      box-shadow: 0 0 0 6px rgba(34,211,238,.10);
+    }
+
+    .project h3{margin:0 0 6px; font-size:16px; letter-spacing:-.2px}
+    .project p{margin:0 0 12px; color:var(--muted); font-size:14px; line-height:1.65}
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .link{
+      font-size:13px; font-weight:950;
+      padding:9px 12px;
+      border-radius:12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      transition:.2s ease;
+    }
+    .link:hover{background: rgba(255,255,255,.10); transform: translateY(-1px)}
+
+    /* Case studies */
+    .cases{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:14px;
+    }
+    .case{
+      padding:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+    }
+    .case-top{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .case h3{margin:0; font-size:16px; letter-spacing:-.2px}
+    .meta{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .kv{display:grid; gap:10px; margin-top:10px}
+    .kv .row{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+    .kv .k{margin:0 0 6px; color:rgba(242,246,255,.86); font-weight:950; font-size:13px}
+    .kv .v{margin:0; color:var(--muted); line-height:1.65; font-size:14px}
+    .results{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:10px;
+      margin-top:12px;
+    }
+    .result{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+    }
+    .result .big{
+      font-size:18px;
+      font-weight:950;
+      letter-spacing:-.2px;
+      margin:0 0 4px;
+      color: rgba(242,246,255,.92);
+    }
+    .result .small{
+      margin:0;
+      color:var(--muted);
+      font-size:13px;
+      line-height:1.5;
+    }
+
+    /* Pricing */
+    .pricing{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      align-items:stretch;
+    }
+    .price{
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      transition:.2s ease;
+    }
+    .price:hover{transform: translateY(-2px); background: rgba(255,255,255,.08)}
+    .price.featured{
+      border-color: rgba(124,92,255,.35);
+      background: linear-gradient(180deg, rgba(124,92,255,.16), rgba(255,255,255,.05));
+    }
+    .ribbon{
+      position:absolute;
+      top:14px; right:-36px;
+      transform: rotate(35deg);
+      background: rgba(124,92,255,.35);
+      border: 1px solid rgba(124,92,255,.45);
+      color: rgba(242,246,255,.95);
+      font-weight: 950;
+      font-size: 12px;
+      padding: 8px 46px;
+      border-radius: 999px;
+      backdrop-filter: blur(10px);
+    }
+    .price h3{margin:0 0 6px; font-size:16px}
+    .desc{margin:0 0 12px; color:var(--muted); font-size:14px; line-height:1.6}
+    .money{display:flex; align-items:flex-end; gap:8px; margin:10px 0 12px}
+    .amt{font-size:34px; font-weight:950; letter-spacing:-.8px}
+    .unit{color:var(--muted); font-weight:950; font-size:13px; padding-bottom:7px}
+    .price ul{margin:0; padding-left:18px; color:var(--muted); line-height:1.85; font-size:14px}
+    .act{margin-top:14px; display:flex; gap:10px; flex-wrap:wrap}
+
+    /* Testimonials */
+    .testis{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .testi{
+      padding:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+    }
+    .quote{margin:0; color:rgba(242,246,255,.84); line-height:1.75; font-size:14px}
+    .who{
+      margin-top:12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      color: var(--muted);
+      font-weight:950;
+      font-size:13px;
+    }
+    .stars{letter-spacing: 1px; color: rgba(251,191,36,.95)}
+    .who b{color:rgba(242,246,255,.92)}
+
+    /* About + Contact */
+    .pad{padding:16px}
+    .about{
+      color: var(--muted);
+      line-height:1.8;
+      font-size:14px;
+      margin:0;
+    }
+    .about b{color:var(--text)}
+    .contact{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:14px;
+      align-items:start;
+    }
+    .contact h3{margin:0}
+    .contact p{margin:10px 0 0; color:var(--muted); line-height:1.75; font-size:14px}
+    .contact-list{display:flex; flex-direction:column; gap:10px}
+    .contact-item{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.05);
+      font-weight:950;
+      font-size:14px;
+      color: var(--muted);
+    }
+    .contact-item b{color:var(--text)}
+
+    footer{padding:24px 0 40px; text-align:center; color:var(--muted); font-size:13px}
+
+    /* Responsive */
+    @media (max-width: 1060px){
+      .pricing{grid-template-columns:1fr}
+      .testis{grid-template-columns:1fr}
+    }
+    @media (max-width: 980px){
+      .hero-grid{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr 1fr}
+      .cases{grid-template-columns:1fr}
+      .contact{grid-template-columns:1fr}
+      .results{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .grid{grid-template-columns:1fr}
+      .results{grid-template-columns:1fr}
+      .addr{width:44%}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="container">
+      <div class="row">
+        <a class="brand" href="#top">
+          <span class="mark"></span>
+          <span>Dorothy Kendi</span>
+        </a>
+
+        <nav class="nav" aria-label="Main">
+          <a href="#work">Work</a>
+          <a href="#case-studies">Case studies</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#testimonials">Reviews</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <header id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div class="card hero-main">
+          <span class="status"><span class="pulse"></span> Available for new projects</span>
+
+          <h1>Web designer building clean, responsive HTML/CSS websites that look premium.</h1>
+
+          <p class="lead">
+            I create modern landing pages and small business websites that load fast, look great on mobile, and guide visitors to take action.
+          </p>
+
+          <div class="cta">
+            <a class="btn primary" href="#contact">Start a project</a>
+            <a class="btn ghost" href="#work">View work</a>
+            <a class="btn whatsapp" href="https://wa.me/254706573769?text=Hi%20Dorothy%2C%20I%20need%20a%20website.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="mini">
+            <p class="k">What I build</p>
+            <p>Landing pages • Business websites • Portfolios • HTML/CSS fixes</p>
+            <div class="pill-row">
+              <span class="pill">Mobile-first</span>
+              <span class="pill">Fast loading</span>
+              <span class="pill">Clean layout</span>
+              <span class="pill">Neat code</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <p class="k">Turnaround</p>
+            <p>Landing pages: 2–4 days • Small sites: 4–7 days</p>
+            <div class="pill-row">
+              <span class="pill">Clear updates</span>
+              <span class="pill">On-time delivery</span>
+            </div>
+          </div>
+
+          <div class="mini">
+            <p class="k">Based in</p>
+            <p>Kenya • Working with clients worldwide</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>Selected work</h2>
+          <p class="sub">A few website builds and concepts.</p>
+        </div>
+        <p class="sub">Quality-first, mobile-first.</p>
+      </div>
+
+      <div class="grid">
+        <article class="card project">
+          <span class="tag">Restaurant landing page</span>
+
+          <div class="shot" aria-label="Restaurant website preview">
+            <div class="bar">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="addr"></div>
+            </div>
+            <div class="view">
+              <div class="label"><span class="chip"></span> Tasty Bites • Menu • Reservations</div>
+            </div>
+          </div>
+
+          <h3>Tasty Bites Restaurant</h3>
+          <p>Landing page designed to convert visitors into bookings with a clean menu layout and a clear call-to-action.</p>
+
+          <div class="pill-row">
+            <span class="pill">Responsive</span>
+            <span class="pill">CTA-focused</span>
+            <span class="pill">Fast</span>
+          </div>
+
+          <div class="links">
+            <a class="link" href="#">Live demo</a>
+            <a class="link" href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <span class="tag">Personal portfolio</span>
+
+          <div class="shot" aria-label="Portfolio website preview">
+            <div class="bar">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="addr"></div>
+            </div>
+            <div class="view">
+              <div class="label"><span class="chip"></span> Portfolio • Work • Pricing • Contact</div>
+            </div>
+          </div>
+
+          <h3>Creator Portfolio</h3>
+          <p>A polished one-page portfolio that highlights projects, services, pricing, and a simple contact flow.</p>
+
+          <div class="pill-row">
+            <span class="pill">Modern UI</span>
+            <span class="pill">Clear sections</span>
+            <span class="pill">Mobile-friendly</span>
+          </div>
+
+          <div class="links">
+            <a class="link" href="#">Live demo</a>
+            <a class="link" href="#">Code</a>
+          </div>
+        </article>
+
+        <article class="card project">
+          <span class="tag">Small business website</span>
+
+          <div class="shot" aria-label="Cleaning business website preview">
+            <div class="bar">
+              <div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+              <div class="addr"></div>
+            </div>
+            <div class="view">
+              <div class="label"><span class="chip"></span> BrightClean • Services • Pricing • Reviews</div>
+            </div>
+          </div>
+
+          <h3>BrightClean Services</h3>
+          <p>Business website concept built to generate leads with service highlights, pricing, testimonials, and contact details.</p>
+
+          <div class="pill-row">
+            <span class="pill">Lead-ready</span>
+            <span class="pill">Trust building</span>
+            <span class="pill">Responsive</span>
+          </div>
+
+          <div class="links">
+            <a class="link" href="#">Live demo</a>
+            <a class="link" href="#">Code</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="case-studies">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>Case studies</h2>
+          <p class="sub">From problem → solution → outcome.</p>
+        </div>
+        <p class="sub">Focused on clarity and conversion.</p>
+      </div>
+
+      <div class="cases">
+        <article class="card case">
+          <div class="case-top">
+            <div>
+              <h3>Restaurant landing page</h3>
+              <p class="sub" style="margin-top:6px">A layout designed to drive more bookings.</p>
+            </div>
+            <div class="meta">
+              <span class="pill">Landing page</span>
+              <span class="pill">Mobile-first</span>
+              <span class="pill">CTA</span>
+            </div>
+          </div>
+
+          <div class="kv">
+            <div class="row">
+              <p class="k">Challenge</p>
+              <p class="v">Visitors needed menu, location, and booking information quickly, especially on mobile.</p>
+            </div>
+            <div class="row">
+              <p class="k">Solution</p>
+              <p class="v">Clean hero, clear menu layout, strong booking call-to-action, and a simple contact flow.</p>
+            </div>
+            <div class="row">
+              <p class="k">Outcome</p>
+              <p class="v">A fast, easy page that answers questions in one scroll and pushes visitors to book.</p>
+            </div>
+          </div>
+
+          <div class="results">
+            <div class="result">
+              <p class="big">Clear UX</p>
+              <p class="small">Everything easy to find</p>
+            </div>
+            <div class="result">
+              <p class="big">Mobile-ready</p>
+              <p class="small">Designed for phone users</p>
+            </div>
+            <div class="result">
+              <p class="big">CTA-first</p>
+              <p class="small">Booking stays obvious</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="card case">
+          <div class="case-top">
+            <div>
+              <h3>Small business website</h3>
+              <p class="sub" style="margin-top:6px">Built to turn visitors into inquiries.</p>
+            </div>
+            <div class="meta">
+              <span class="pill">Business site</span>
+              <span class="pill">Trust</span>
+              <span class="pill">Leads</span>
+            </div>
+          </div>
+
+          <div class="kv">
+            <div class="row">
+              <p class="k">Challenge</p>
+              <p class="v">Potential clients wanted clear services and pricing before reaching out.</p>
+            </div>
+            <div class="row">
+              <p class="k">Solution</p>
+              <p class="v">Simple services, transparent packages, trust section, and direct WhatsApp/email contact.</p>
+            </div>
+            <div class="row">
+              <p class="k">Outcome</p>
+              <p class="v">A professional site that answers “How much?” and “Can I trust you?” fast.</p>
+            </div>
+          </div>
+
+          <div class="results">
+            <div class="result">
+              <p class="big">Trust</p>
+              <p class="small">Reviews + clear info</p>
+            </div>
+            <div class="result">
+              <p class="big">Pricing</p>
+              <p class="small">Less back-and-forth</p>
+            </div>
+            <div class="result">
+              <p class="big">Leads</p>
+              <p class="small">Direct contact flow</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>Pricing</h2>
+          <p class="sub">Simple packages with room to customize.</p>
+        </div>
+        <p class="sub">Fast delivery, clean work.</p>
+      </div>
+
+      <div class="pricing">
+        <article class="card price">
+          <h3>Starter Landing Page</h3>
+          <p class="desc">A clean one-page layout for a service or product.</p>
+
+          <div class="money">
+            <div class="amt">$60</div>
+            <div class="unit">starting</div>
+          </div>
+
+          <ul>
+            <li>1-page responsive landing page</li>
+            <li>Modern layout + call-to-action</li>
+            <li>Contact section</li>
+            <li>Basic SEO structure</li>
+          </ul>
+
+          <div class="act">
+            <a class="btn primary" href="#contact">Get started</a>
+            <a class="btn whatsapp" href="https://wa.me/254706573769?text=Hi%20Dorothy%2C%20I%20need%20a%20landing%20page.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </article>
+
+        <article class="card price featured">
+          <span class="ribbon">Most chosen</span>
+          <h3>Business Website</h3>
+          <p class="desc">A full website for a small business.</p>
+
+          <div class="money">
+            <div class="amt">$150</div>
+            <div class="unit">starting</div>
+          </div>
+
+          <ul>
+            <li>Up to 5 sections (or pages)</li>
+            <li>Services + pricing layout</li>
+            <li>Testimonials</li>
+            <li>Lead-focused contact flow</li>
+          </ul>
+
+          <div class="act">
+            <a class="btn primary" href="#contact">Book this</a>
+            <a class="btn whatsapp" href="https://wa.me/254706573769?text=Hi%20Dorothy%2C%20I%20need%20a%20business%20website.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </article>
+
+        <article class="card price">
+          <h3>Fixes & Redesign</h3>
+          <p class="desc">CSS fixes and mobile responsiveness improvements.</p>
+
+          <div class="money">
+            <div class="amt">$30</div>
+            <div class="unit">starting</div>
+          </div>
+
+          <ul>
+            <li>Fix layout and spacing issues</li>
+            <li>Responsive improvements</li>
+            <li>UI refresh</li>
+            <li>Quick delivery</li>
+          </ul>
+
+          <div class="act">
+            <a class="btn primary" href="#contact">Request a fix</a>
+            <a class="btn whatsapp" href="https://wa.me/254706573769?text=Hi%20Dorothy%2C%20I%20need%20HTML%2FCSS%20fixes.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>Reviews</h2>
+          <p class="sub">What people say after working with me.</p>
+        </div>
+        <p class="sub">Reliable and fast.</p>
+      </div>
+
+      <div class="testis">
+        <article class="card testi">
+          <p class="quote">
+            “Clean work and great communication. The website looks professional on phone and laptop, and the layout is very clear.”
+          </p>
+          <div class="who">
+            <span><b>Mary N.</b> • Small Business</span>
+            <span class="stars">★★★★★</span>
+          </div>
+        </article>
+
+        <article class="card testi">
+          <p class="quote">
+            “Quick delivery and she fixed my CSS issues faster than I expected. Everything is responsive now.”
+          </p>
+          <div class="who">
+            <span><b>Brian O.</b> • Website Fix</span>
+            <span class="stars">★★★★★</span>
+          </div>
+        </article>
+
+        <article class="card testi">
+          <p class="quote">
+            “The landing page is clean, modern, and easy to navigate. Visitors can understand the offer immediately.”
+          </p>
+          <div class="who">
+            <span><b>Sarah W.</b> • Landing Page</span>
+            <span class="stars">★★★★★</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>About</h2>
+          <p class="sub">Available remotely worldwide.</p>
+        </div>
+      </div>
+
+      <div class="card pad">
+        <p class="about">
+          I’m <b>Dorothy</b>, a web designer focused on clean, responsive HTML/CSS builds. I care about clarity, spacing, and layouts that guide visitors to take action. I work best with small businesses and personal brands who want a premium look without unnecessary complexity.
+        </p>
+        <div class="pill-row">
+          <span class="pill">Responsive by default</span>
+          <span class="pill">Neat code</span>
+          <span class="pill">Clear communication</span>
+          <span class="pill">On-time delivery</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container">
+      <div class="head">
+        <div>
+          <h2>Contact</h2>
+          <p class="sub">Let’s build your website.</p>
+        </div>
+        <p class="sub">Email or WhatsApp works.</p>
+      </div>
+
+      <div class="card pad contact">
+        <div>
+          <h3>Send a quick message</h3>
+          <p>
+            Tell me what you need and I’ll reply with a clear plan, timeline, and price.
+          </p>
+
+          <div class="cta" style="margin-top:14px">
+            <a class="btn primary" href="kendidorothy216@gmail.com">Email</a>
+            <a class="btn whatsapp" href="https://wa.me/254706573769?text=Hi%20Dorothy%2C%20I%20need%20a%20website.%20Can%20we%20talk%3F" target="_blank" rel="noopener">WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="contact-list">
+          <div class="contact-item"><b>Email:</b> kendidorothy216@gmail.com</div>
+          <div class="contact-item"><b>WhatsApp:</b> +254 706573769</div>
+          <div class="contact-item"><b>Status:</b> Available</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="y"></span> Dorothy Kendi • HTML & CSS
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+</body>
+</html>
